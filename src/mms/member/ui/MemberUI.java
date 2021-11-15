@@ -18,6 +18,7 @@ public class MemberUI {
 		boolean isStop = false;
 		MemberController memberController = new MemberController();
 		Scanner sc = new Scanner(System.in);
+		System.out.println("phsh연습");
 
 		do {
 			System.out.println("### 회원 관리 프로그램 ###");
