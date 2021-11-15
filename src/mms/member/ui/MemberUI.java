@@ -15,10 +15,17 @@ public class MemberUI {
 	public static void main(String[] args) {
 
 		System.out.println("pull 연습");
+		
+		System.out.println("push 연습1");
+		
+		System.out.println("slave branch 연습1");
+		
 		boolean isStop = false;
 		MemberController memberController = new MemberController();
 		Scanner sc = new Scanner(System.in);
-		System.out.println("phsh연습");
+		
+		
+		
 
 		do {
 			System.out.println("### 회원 관리 프로그램 ###");
