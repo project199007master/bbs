@@ -13,7 +13,13 @@ public class MemberListService {
 	
 	public ArrayList<Member> getMemberList() {
 		
+		Connection conn = JdbcUtil.getConnection();
+		MemberDAO memberDAO = new MemberDAO(conn);
+		ArrayList<Member> memberList = memberDAO.selectMemberList();
 		
+		JdbcUtil.close(conn);
+		
+		return memberList;
 	}
 
 }

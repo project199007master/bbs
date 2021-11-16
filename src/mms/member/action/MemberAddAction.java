@@ -15,9 +15,9 @@ public class MemberAddAction implements Action {
 		ConsoleUtil cu = new ConsoleUtil();
 		Member newMember = cu.getNewMember(sc);
 		
-		MemberAddService mas = new MemberAddService();
+		MemberAddService memberAddService = new MemberAddService();
 		
-		boolean isSuccess = mas.addMember(newMember);
+		boolean isSuccess = memberAddService.addMember(newMember);
 		
 		if(isSuccess) {
 			cu.printAddSuccessMessage(newMember);

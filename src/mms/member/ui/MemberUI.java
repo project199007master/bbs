@@ -9,23 +9,21 @@ import mms.member.action.MemberModifyAction;
 import mms.member.action.MemberRemoveAction;
 import mms.member.controller.MemberController;
 import mms.member.db.JdbcUtil;
+import mms.member.svc.MemberListService;
 
 public class MemberUI {
 
 	public static void main(String[] args) {
 
 		System.out.println("pull 연습");
-		
+
 		System.out.println("push 연습1");
-		
+
 		System.out.println("slave branch 연습1");
-		
+
 		boolean isStop = false;
 		MemberController memberController = new MemberController();
 		Scanner sc = new Scanner(System.in);
-		
-		
-		
 
 		do {
 			System.out.println("### 회원 관리 프로그램 ###");
@@ -43,29 +41,29 @@ public class MemberUI {
 				switch (menu) {
 
 				case 1:
-					action = new MemberAddAction();
-					
+					action = new MemberAddAction(); // 회원등록
 					break;
+
 				case 2:
-					
+					action = new MemberListAction(); // 전체 회원 조회
 					break;
 				case 3:
-					
+					action = new MemberModifyAction(); // 회원 정보 수정
 					break;
 				case 4:
-				
+					action = new MemberRemoveAction(); // 회원 삭제
 					break;
 				case 5:
 					isStop = true;
 					break;
 				default:
 					System.out.println("옳지않은 메뉴 번호 입력\n");
-
 				}
-				
-				if(action != null) {
+					
+				if (action != null) {
 					memberController.processRequest(action, sc);
 				}
+
 			} catch (NumberFormatException e) {
 				System.out.println("문자가 입력되었음. 숫자만 입력하세요\n");
 

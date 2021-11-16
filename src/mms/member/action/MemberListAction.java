@@ -12,6 +12,9 @@ public class MemberListAction implements Action  {
 	@Override
 	public void execute(Scanner sc) throws Exception {
 		
-		
+		 ConsoleUtil cu = new ConsoleUtil();
+		 MemberListService memberListService = new MemberListService();
+		 ArrayList<Member> memberList = memberListService.getMemberList();
+		 cu.printMemberList(memberList); // select all 출력
 	}
 }

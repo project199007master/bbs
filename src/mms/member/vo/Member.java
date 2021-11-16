@@ -9,6 +9,20 @@ public class Member {
 	private String email;
 	private int age;	
 		
+	public Member() {
+	
+	}
+	
+
+	public Member(String name, String addr, String nation, String email, int age) {
+		super();
+		this.name = name;
+		this.addr = addr;
+		this.nation = nation;
+		this.email = email;
+		this.age = age;
+	}
+
 
 	public String getName() {
 		return name;

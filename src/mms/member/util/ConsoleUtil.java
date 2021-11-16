@@ -50,26 +50,32 @@ public class ConsoleUtil {
 	public void printAddFailMessage(Member newMember) {
 		System.out.println(newMember.getName() + " 회원 정보 추가 실패\n");
 	}
-
+	
+	// 2. select all 출력
 	public void printMemberList(ArrayList<Member> memberList) {
 		// size() : 컬렉션에 저장되어 있는 요소의 개수를 리턴하는 메소드
 		for (int i = 0; i < memberList.size(); i++) {
 			Member m = memberList.get(i);
-			System.out.println("name = " + m.getName() + ", addr = " + m.getAddr() + ", email = " + m.getEmail()
-					+ ", nation = " + m.getNation() + ", age = " + m.getAge());
+			String result = m.toString();
+//			System.out.println("name = " + m.getName() + ", addr = " + m.getAddr() + ", email = " + m.getEmail()
+//					+ ", nation = " + m.getNation() + ", age = " + m.getAge());
+			System.out.println(result);
 		}
 		System.out.println();
 	}
 
+	// 3. update
+	// 수정할 회원 정보 얻어오기
 	public String getName(String msgKind, Scanner sc) {
 
-		System.out.println(msgKind);
+		System.out.println(msgKind + "회원 이름을 입력하세요");
 		System.out.print("회원이름 : ");
 		String name = sc.nextLine();
 
 		return name;
 	}
 
+	// 수정할 회원 정보
 	public Member getUpdateMember(Scanner sc, Member oldMember) {
 
 		System.out.println("수정할 회원 정보를 입력하세요.");
@@ -82,27 +88,10 @@ public class ConsoleUtil {
 		System.out.print("이전 이메일 : " + oldMember.getEmail() + "/수정할 이메일 : ");
 		String email = sc.nextLine();
 
-		int age = -1;
-		boolean isRight = false;
-		do {
-			try {
-				System.out.print("이전 나이 : " + oldMember.getAge() + "/수정할 나이 : ");
-				age = Integer.parseInt(sc.nextLine());
-				isRight = true;
-			} catch (NumberFormatException e) {
-				System.out.println("문자입력됨. 다시 입력하세요.");
-			}
-		} while (!isRight);
+		System.out.print("이전 나이 : " + oldMember.getAge() + "/수정할 나이 : ");
+		int age = Integer.parseInt(sc.nextLine());
 
-		Member updateMember = new Member();
-		//updateMember.setId(oldMember.getId());
-		updateMember.setName(oldMember.getName());
-		updateMember.setNation(nation);
-		updateMember.setAddr(addr);
-		updateMember.setEmail(email);
-		updateMember.setAge(age);
-
-		return updateMember;
+		return new Member(oldMember.getName(), addr, nation, email, age);
 
 	}
 

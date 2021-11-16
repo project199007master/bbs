@@ -1,23 +1,32 @@
 package mms.member.svc;
 
+import java.net.InetSocketAddress;
 import java.sql.Connection;
 
 import mms.member.dao.MemberDAO;
 import mms.member.db.JdbcUtil;
 import mms.member.vo.Member;
 
-public class MemberAddService {
+public class MemberAddService {	
 
-	Connection conn = null;
-	
 	public boolean addMember(Member newMember) throws Exception {
 
-		conn = JdbcUtil.getConnection();
-		MemberDAO dao = new MemberDAO(conn);
-		
-		if(dao.insertNewMember(newMember) > 0)
+		Connection conn = JdbcUtil.getConnection();
+		MemberDAO memberDAO = new MemberDAO(conn);
+		boolean isAddSuccess = false;
+
+		if (memberDAO.insertNewMember(newMember) > 0) {
+			isAddSuccess = true;
+			JdbcUtil.commit(conn);
 			return true;
-		return false;
+		} else {
+			JdbcUtil.rollback(conn);
+					
+		}
+		JdbcUtil.close(conn);
+		return isAddSuccess;
+		
+
 	}
 
 }

@@ -10,15 +10,34 @@ public class MemberModifyService {
 
 	Connection conn = null;
 
-	public Member getOldMember(String name) {
-
-		return null;
-	}
-
+	
 	public boolean modifyMember(Member updateMember) {
 
+		boolean isModifySuccess = false;
+		Connection conn = JdbcUtil.getConnection();
+		MemberDAO memberDAO = new MemberDAO(conn);
+		int updateCount = memberDAO.updateMember(updateMember);
+		if (updateCount > 0) {
+			isModifySuccess = true;
+			JdbcUtil.commit(conn);
+			
+		} else {
+			JdbcUtil.rollback(conn);
+			
+		}
+		JdbcUtil.close(conn);
+		return isModifySuccess;
+	}
 	
-		return false;
+	// 수정할 이름을 불러올 떄 정보 가져오기
+	public Member getOldMember(String name) {
+		
+		Connection conn = JdbcUtil.getConnection();
+		MemberDAO memberDAO = new MemberDAO(conn);
+		Member member = memberDAO.selectOldMember(name);
+		
+		JdbcUtil.close(conn);
+		return member;
 	}
 
 }
